@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>User Booking</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="navbar">
+    <a href="user_booking.html"><i class="fas fa-plus-circle"></i> Book Room</a>
+    <a href="booking_status.html"><i class="fas fa-search"></i> Status</a>
+    <a href="admin_panel.html"><i class="fas fa-user-shield"></i> Admin</a>
+    <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+  </div>
+
+  <!-- CAMPUS MAP -->
+  <div class="card map-card">
+    <h3><i class="fas fa-map-marked-alt"></i> Campus Map</h3>
+    <img src="https://i.postimg.cc/zDV4Hyc9/image.png" alt="Woxsen Campus Map" class="map-img"
+      onclick="window.open(this.src, '_blank')">
+    <div class="map-caption"><i class="fas fa-search-plus"></i> Click map to view full size</div>
+  </div>
+
+  <h2>Hostel Room Booking</h2>
+
+  <div class="card">
+    <form id="bookingForm" class="booking-form-grid">
+      <!-- Section 1: Personal Info -->
+      <div class="form-section full-width">
+        <h3><i class="fas fa-user-circle"></i> Personal Details</h3>
+      </div>
+
+      <div class="form-group full-width">
+        <label>Full Name</label>
+        <div class="input-icon">
+          <i class="fas fa-user"></i>
+          <input type="text" id="name" placeholder="Enter your full name">
+        </div>
+      </div>
+
+      <!-- Section 2: Room Preferences -->
+      <div class="form-section full-width">
+        <h3><i class="fas fa-hotel"></i> Room Preferences</h3>
+      </div>
+
+      <div class="form-group">
+        <label>Hostel Type</label>
+        <div class="input-icon">
+          <i class="fas fa-building"></i>
+          <select id="hostelType">
+            <option>Hostel Tower</option>
+            <option>Student Hostel</option>
+            <option>Girls Hostel</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Block</label>
+        <div class="input-icon">
+          <i class="fas fa-cubes"></i>
+          <select id="block">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+            <option>E</option>
+            <option>F</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Room Type</label>
+        <div class="input-icon">
+          <i class="fas fa-bed"></i>
+          <select id="roomType">
+            <option>Twin Sharing</option>
+            <option>Three Sharing</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>AC Preference</label>
+        <div class="input-icon">
+          <i class="fas fa-snowflake"></i>
+          <select id="acType">
+            <option>AC</option>
+            <option>Non-AC</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Section 3: Dates & Food -->
+      <div class="form-section full-width">
+        <h3><i class="fas fa-calendar-alt"></i> Dates & Amenities</h3>
+      </div>
+
+      <div class="form-group">
+        <label>Check-in</label>
+        <input type="datetime-local" id="checkinTime" required>
+      </div>
+
+      <div class="form-group">
+        <label>Check-out</label>
+        <input type="datetime-local" id="checkoutTime" required>
+      </div>
+
+      <div class="form-group full-width">
+        <label>Food Plan</label>
+        <div class="input-icon">
+          <i class="fas fa-utensils"></i>
+          <select id="foodPlan">
+            <option>No Food</option>
+            <option>Breakfast Only</option>
+            <option>Breakfast + Lunch</option>
+            <option>Full Mess (3 Meals)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="full-width" style="margin-top: 20px;">
+        <button type="button" onclick="submitBooking()" class="btn-primary-lg">
+          <i class="fas fa-paper-plane"></i> Confirm Booking
+        </button>
+      </div>
+    </form>
+
+    <!-- BOOKING SUCCESS MODAL -->
+    <div id="bookingResultModal" class="modal hidden">
+      <div class="modal-box" style="text-align: center;">
+        <i class="fas fa-check-circle" style="color: #00c853; font-size: 60px; margin-bottom: 20px;"></i>
+        <h2 style="color: var(--primary);">Booking Confirmed!</h2>
+        <p style="color: #666; margin-bottom: 20px;">Use this ID to track your status.</p>
+
+        <div class="booking-id-box"
+          style="background: #e8f5e9; padding: 15px; border-radius: 12px; margin-bottom: 25px; border: 1px dashed #00c853;">
+          <p style="margin: 0 0 5px 0; font-size: 12px; color: #666; text-transform: uppercase;">Booking ID</p>
+          <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+            <input type="text" id="bookingIdField" readonly
+              style="width: auto; margin: 0; text-align: center; font-weight: bold; font-size: 18px; border: none; background: transparent; padding: 0;" />
+            <button onclick="copyBookingId()"
+              style="width: auto; padding: 5px 10px; font-size: 14px; background: transparent; color: var(--primary); box-shadow: none; border: 1px solid var(--primary);"><i
+                class="fas fa-copy"></i></button>
+          </div>
+        </div>
+
+        <button onclick="closeBookingResult()" class="btn-primary-lg">Done</button>
+      </div>
+    </div>
+
+    <!-- PAYMENT MODAL -->
+    <div id="paymentModal" class="modal hidden">
+      <div class="modal-box">
+
+        <h2>💳 Hostel Payment</h2>
+
+        <p style="color: #666; margin-bottom: 5px;">Total Payable Amount</p>
+        <h3>₹<span id="payAmount">0</span></h3>
+
+        <div class="pay-options">
+          <label><input type="radio" name="payMode" value="UPI" checked> UPI</label>
+          <label><input type="radio" name="payMode" value="Card"> Card</label>
+          <label><input type="radio" name="payMode" value="Net Banking"> Net Banking</label>
+        </div>
+
+        <button onclick="confirmPayment()"><i class="fas fa-lock"></i> Pay Now</button>
+        <button class="secondary" onclick="closePayment()">Cancel</button>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="storage.js"></script>
+  <script src="roomGenerator.js"></script>
+  <script src="userBooking.js"></script>
+
+  <script src="ui_interactions.js"></script>
+</body>
+
+</html>

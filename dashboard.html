@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Room Availability Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body onload="loadDashboard()">
+
+    <div class="navbar">
+        <a href="user_booking.html"><i class="fas fa-plus-circle"></i> Book Room</a>
+        <a href="booking_status.html"><i class="fas fa-search"></i> Status</a>
+        <a href="admin_panel.html"><i class="fas fa-user-shield"></i> Admin</a>
+        <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+    </div>
+
+    <h2>Hostel Campus Overview</h2>
+
+    <div class="stats">
+        <div class="stat-box">
+            <i class="fas fa-bed stat-icon"></i>
+            <p>Total Capacity</p>
+            <strong id="totalRooms"></strong>
+        </div>
+
+        <div class="stat-box">
+            <i class="fas fa-user-check stat-icon"></i>
+            <p>Occupied Beds</p>
+            <strong id="occupiedRooms"></strong>
+        </div>
+
+        <div class="stat-box">
+            <i class="fas fa-door-open stat-icon"></i>
+            <p>Available Beds</p>
+            <strong id="availableRooms"></strong>
+        </div>
+
+        <div class="stat-box" style="border-top: 5px solid #2e7d32;">
+            <i class="fas fa-rupee-sign stat-icon" style="color:#2e7d32;"></i>
+            <p>Total Revenue</p>
+            <strong id="totalRevenue" style="color:#2e7d32;">₹0</strong>
+        </div>
+    </div>
+
+    <!-- MAP SECTION -->
+    <div class="map-card" style="max-width: 1000px; margin: 0 auto 50px auto;">
+        <h3 style="margin-bottom: 20px; color: var(--primary);"><i class="fas fa-map-marked-alt"></i> Campus Overview
+        </h3>
+        <img src="https://i.postimg.cc/zDV4Hyc9/image.png" alt="Woxsen Campus Map" class="map-img"
+            onclick="window.open(this.src, '_blank')">
+        <div class="map-caption"><i class="fas fa-search-plus"></i> Click map to view full size</div>
+    </div>
+
+    <!-- CHARTS SECTION -->
+    <div
+        style="display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; margin-bottom: 50px;">
+        <div class="card" style="width: 450px; margin: 0;">
+            <h3 style="margin-bottom: 20px;">Booking Status</h3>
+            <canvas id="statusChart"></canvas>
+        </div>
+        <div class="card" style="width: 450px; margin: 0;">
+            <h3 style="margin-bottom: 20px;">Occupancy</h3>
+            <canvas id="occupancyChart"></canvas>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="storage.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="ui_interactions.js"></script>
+</body>
+
+</html>

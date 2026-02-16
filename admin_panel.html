@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        if (localStorage.getItem("adminLoggedIn") !== "true") {
+            window.location.href = "admin_login.html";
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="user_booking.html"><i class="fas fa-plus-circle"></i> Book Room</a>
+        <a href="booking_status.html"><i class="fas fa-search"></i> Status</a>
+        <a href="admin_panel.html"><i class="fas fa-user-shield"></i> Admin</a>
+        <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="#" onclick="logout()" style="background-color: #c0392b; padding: 5px 10px; border-radius: 4px;"><i
+                class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <div class="admin-dashboard">
+        <h2>Admin Overview</h2>
+
+        <!-- STATS GRID -->
+        <div class="stats-grid">
+            <div class="stat-card green">
+                <h4>Accepted</h4>
+                <h2 id="acceptedCount">0</h2>
+            </div>
+            <div class="stat-card yellow">
+                <h4>Pending</h4>
+                <h2 id="pendingCount">0</h2>
+            </div>
+            <div class="stat-card red">
+                <h4>Rejected</h4>
+                <h2 id="rejectedCount">0</h2>
+            </div>
+            <div class="stat-card blue">
+                <h4>Total Bookings</h4>
+                <h2 id="totalCount">0</h2>
+            </div>
+        </div>
+
+        <!-- CHARTS ROW -->
+        <div class="charts-row" style="margin-bottom: 30px;">
+            <div class="card" style="width: auto; margin:0;">
+                <canvas id="statusChart"></canvas>
+            </div>
+            <div class="card" style="width: auto; margin:0;">
+                <canvas id="hostelChart"></canvas>
+            </div>
+        </div>
+
+        <h2>Booking Requests</h2>
+
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Hostel</th>
+                        <th>Block</th>
+                        <th>Room No</th>
+                        <th>Type</th>
+                        <th>AC</th>
+                        <th>In/Out</th>
+                        <th>Amount</th>
+                        <th>Pay Status</th>
+                        <th>Food Plan</th>
+                        <th>Access</th>
+                        <th>Txn ID</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingTable">
+                    <!-- Rows loaded via JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="storage.js"></script>
+    <script src="admin.js"></script>
+    <script src="ui_interactions.js"></script>
+</body>
+
+</html>

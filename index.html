@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MyCamu Student Portal</title>
+    <link rel="stylesheet" href="portal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        function loadPage(pageUrl, element) {
+            document.getElementById('contentFrame').src = pageUrl;
+
+            // Update active state in menu
+            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+            if (element) element.classList.add('active');
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- LEFT SIDEBAR -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-university fa-2x"></i>
+            <span style="font-weight:bold; font-size:18px;">Woxsen University</span>
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search">
+        </div>
+
+        <div class="menu">
+            <a onclick="loadPage('profile_view.html', this)" class="menu-item">
+                <i class="fas fa-user-graduate"></i> My learning
+            </a>
+            <a class="menu-item"><i class="fas fa-building"></i> My institution</a>
+            <a class="menu-item"><i class="fas fa-envelope"></i> Messages</a>
+            <a class="menu-item"><i class="fas fa-calendar-check"></i> Attendance</a>
+            <a class="menu-item"><i class="fas fa-clock"></i> Timetable</a>
+
+            <!-- THE MAGIC LINK -->
+            <a onclick="loadPage('user_booking.html', this)" class="menu-item active">
+                <i class="fas fa-bed"></i> Accommodation
+            </a>
+
+            <a class="menu-item"><i class="fas fa-file-invoice-dollar"></i> Billing</a>
+            <a class="menu-item"><i class="fas fa-bullhorn"></i> Announcement</a>
+            <a class="menu-item"><i class="fas fa-comment-dots"></i> Feedback</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- TOP NAV -->
+        <div class="top-bar">
+            <div class="top-title">MyCamu Student Portal</div>
+            <div class="top-icons">
+                <i class="fas fa-bell"></i>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area">
+            <iframe id="contentFrame" src="profile_view.html"></iframe>
+        </div>
+    </div>
+
+    <script src="ui_interactions.js"></script>
+</body>
+
+</html>

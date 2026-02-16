@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="user_booking.html"><i class="fas fa-plus-circle"></i> Book Room</a>
+        <a href="booking_status.html"><i class="fas fa-search"></i> Status</a>
+        <a href="admin_panel.html"><i class="fas fa-user-shield"></i> Admin</a>
+        <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+    </div>
+
+    <h2>Admin Login</h2>
+
+    <div class="card">
+        <label><i class="fas fa-user"></i> Admin ID:</label><br>
+        <input type="text" id="adminId"><br><br>
+
+        <label><i class="fas fa-lock"></i> Password:</label><br>
+        <input type="password" id="adminPass"><br><br>
+
+        <button onclick="login()"><i class="fas fa-sign-in-alt"></i> Login</button>
+    </div>
+
+    <script src="admin_login.js"></script>
+
+    <script src="ui_interactions.js"></script>
+</body>
+
+</html>
